@@ -16,13 +16,16 @@ const LoginScreen = ({ navigation }) => {
     const keyboardHide = () => {
         setIsShowKeyboard(false);
         Keyboard.dismiss();
+        console.log("keyboardHide", isShowKeyboard);
     };
+    const navigateTo = (dest) => navigation.navigate(dest);
 
     const fetchLogin = () => {
         if (user.email && user.password) {
             keyboardHide()
             console.log("user Login", user);
             setUser(userData)
+            navigateTo("HomeScreen")
             
         } else {
             alert("Заполните все поля!")
@@ -45,19 +48,21 @@ const LoginScreen = ({ navigation }) => {
                                 style={styles.input}
                                 onChangeText={(value) => setUser((prevState) => ({ ...prevState, email: value }))}
                                 value={user.email}
-                            />
+                                onFocus={()=>setIsShowKeyboard(true)}
+                                />
                             <TextInput
                                 placeholder='Пароль'
                                 style={styles.input}
                                 secureTextEntry={true}
                                 onChangeText={(value) => setUser((prevState) => ({ ...prevState, password: value }))}   
                                 value={user.password}
+                                onFocus={()=>setIsShowKeyboard(true)}
                             />
                             <TouchableOpacity style={styles.btn} onPress={fetchLogin}>
                                 <Text style={styles.btnText}>Войти</Text>
                             </TouchableOpacity>
 
-                            <View style={styles.regLink}>
+                            <View style={{...styles.regLink, marginBottom: isShowKeyboard? 32: 144 }}>
                                 <Text style={styles.regLinkText} onPress={() => navigation.navigate("RegistrationScreen")}>Нет аккаунта? Зарегистрироваться</Text>
 
                             </View>
@@ -132,7 +137,6 @@ const styles = StyleSheet.create({
     },
     regLink: {
         alignItems: "center",
-        marginBottom: 144
 
     },
     regLinkText: {

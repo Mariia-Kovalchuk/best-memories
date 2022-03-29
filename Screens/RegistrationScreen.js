@@ -1,5 +1,4 @@
 import { StyleSheet, TextInput, View, Text, TouchableOpacity, ImageBackground, KeyboardAvoidingView, Platform, TouchableWithoutFeedback , Keyboard } from 'react-native';
-// import * as Font from 'expo-font';
 import React, {useState} from 'react';
 
 
@@ -20,7 +19,9 @@ const RegistrationScreen = ({ navigation }) => {
         Keyboard.dismiss();
     };
 
-    const navigateTo = (dest) => navigation.navigate(dest);
+    const navigateTo = (dest) => {
+        navigation.navigate(dest)
+    };
 
 
     const fetchRegistration = () => {
@@ -75,7 +76,7 @@ const RegistrationScreen = ({ navigation }) => {
                             </TouchableOpacity>
 
                             <View style={{...styles.regLink, marginBottom: isShowKeyboard? 32: 144 }}>
-                                <Text style={styles.regLinkText}  onPress={() => navigation.navigate("LoginScreen")}>Уже есть аккаунт? Войти</Text>
+                                <Text style={styles.regLinkText}  onPress={() => navigateTo("LoginScreen")}>Уже есть аккаунт? Войти</Text>
 
                             </View>
 

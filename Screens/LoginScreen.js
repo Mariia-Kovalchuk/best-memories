@@ -1,5 +1,4 @@
 import { StyleSheet, TextInput, View, Text, TouchableOpacity, ImageBackground, KeyboardAvoidingView, Platform, TouchableWithoutFeedback , Keyboard } from 'react-native';
-// import * as Font from 'expo-font';
 import React, {useState} from 'react';
 
 
@@ -18,7 +17,7 @@ const LoginScreen = ({ navigation }) => {
         Keyboard.dismiss();
         console.log("keyboardHide", isShowKeyboard);
     };
-    const navigateTo = (dest) => navigation.navigate(dest);
+    const navigateTo = (dest) => { navigation.navigate(dest) };
 
     const fetchLogin = () => {
         if (user.email && user.password) {
@@ -63,7 +62,7 @@ const LoginScreen = ({ navigation }) => {
                             </TouchableOpacity>
 
                             <View style={{...styles.regLink, marginBottom: isShowKeyboard? 32: 144 }}>
-                                <Text style={styles.regLinkText} onPress={() => navigation.navigate("RegistrationScreen")}>Нет аккаунта? Зарегистрироваться</Text>
+                                <Text style={styles.regLinkText} onPress={() => navigateTo("RegistrationScreen")}>Нет аккаунта? Зарегистрироваться</Text>
 
                             </View>
 

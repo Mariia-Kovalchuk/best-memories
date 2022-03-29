@@ -1,10 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { NavigationContainer } from "@react-navigation/native";
-import { Fontisto } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome5, Fontisto } from '@expo/vector-icons';
 import AlbumsScreen from './AlbumsScreen';
 import CreateAlbumScreen from './CreateAlbumScreen';
 import ProfileScreen from './ProfileScreen';
@@ -14,14 +10,12 @@ import ProfileScreen from './ProfileScreen';
 const Tabs = createBottomTabNavigator();
 
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+  const signOut = () => {
+    navigation.navigate("LoginScreen")
+  }
   return (
     <Tabs.Navigator
-      // tabBarOptions={{
-      //   activeTintColor: "yellow",
-      //   inactiveTintColor: "gray",
-      //   showLabel: false
-      // }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -43,28 +37,14 @@ const HomeScreen = () => {
 
       })}
 
-    // screenOptions={({ route }) => ({
-    //     tabBarIcon: ({ focused, color, size }) => {
-    //       let iconName;
-
-    //       if (route.name === 'Home') {
-    //         iconName = focused
-    //           ? 'ios-information-circle'
-    //           : 'ios-information-circle-outline';
-    //       } else if (route.name === 'Settings') {
-    //         iconName = focused ? 'ios-list-box' : 'ios-list';
-    //       }
-
-    //       // You can return any component that you like here!
-    //       return <Ionicons name={iconName} size={size} color={color} />;
-    //     },
-    //     tabBarActiveTintColor: 'tomato',
-    //     tabBarInactiveTintColor: 'gray',
-    //   })}
     >
-      <Tabs.Screen name='Albums' component={AlbumsScreen} options={{ headerShown: false }} />
+      <Tabs.Screen name='Albums' component={AlbumsScreen} options={{ headerShown: false  }} />
       <Tabs.Screen name='Create' component={CreateAlbumScreen} options={{ headerShown: false }} />
-      <Tabs.Screen name='Profile' component={ProfileScreen} options={{ headerShown: false }} />
+      <Tabs.Screen name='Profile' component={ProfileScreen} options={{
+        title: null,
+        headerRight: () => {
+         return <MaterialIcons.Button name="logout" size={24} color="blue" backgroundColor='transparent' onPress={signOut}/>
+      } }} />
     </Tabs.Navigator>
 
   );

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import RegistrationScreen from "./Screens/RegistrationScreen"
@@ -16,20 +16,37 @@ export default function App() {
     RobotoRegular: require("./assets/fonts/Roboto/Roboto-Regular.ttf"),
     RobotoMedium: require("./assets/fonts/Roboto/Roboto-Medium.ttf"),
   });
+
+
   
   if (!loaded) {
     return null;
+    
   }
   
   return (
     <NavigationContainer>
       <MainStack.Navigator initialRouteName="LoginScreen">
-        <MainStack.Screen name="LoginScreen" component={LoginScreen}/>
-        <MainStack.Screen name="RegistrationScreen" component={RegistrationScreen}/>
-        <MainStack.Screen name="HomeScreen" component={HomeScreen}/>
+        <MainStack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{
+            headerShown: false
+          }} />
+        <MainStack.Screen
+          name="RegistrationScreen"
+          component={RegistrationScreen}
+          options={{
+            headerShown: false
+          }} />
+         <MainStack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{
+            headerShown: false
+          }} />
       </MainStack.Navigator>
-      
     </NavigationContainer>
   );
-}
+};
 

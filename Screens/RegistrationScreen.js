@@ -1,5 +1,4 @@
 import { StyleSheet, TextInput, View, Text, TouchableOpacity, ImageBackground, KeyboardAvoidingView, Platform, TouchableWithoutFeedback , Keyboard } from 'react-native';
-// import * as Font from 'expo-font';
 import React, {useState} from 'react';
 
 
@@ -20,11 +19,17 @@ const RegistrationScreen = ({ navigation }) => {
         Keyboard.dismiss();
     };
 
+    const navigateTo = (dest) => {
+        navigation.navigate(dest)
+    };
+
+
     const fetchRegistration = () => {
         if (user.login && user.email && user.password) {
             keyboardHide()
             console.log("user reg", user);
             setUser(userData)
+            navigateTo("HomeScreen")
 
             
         } else {
@@ -48,6 +53,7 @@ const RegistrationScreen = ({ navigation }) => {
                                 style={styles.input}
                                 onChangeText={(value) => setUser((prevState) => ({ ...prevState, login: value }))}
                                 value={user.login}
+                                onFocus={()=>setIsShowKeyboard(true)}
                             />
 
                             <TextInput
@@ -55,6 +61,7 @@ const RegistrationScreen = ({ navigation }) => {
                                 style={styles.input}
                                 onChangeText={(value) => setUser((prevProps) => ({ ...prevProps, email: value }))}
                                 value={user.email}
+                                onFocus={()=>setIsShowKeyboard(true)}
                             />
                             <TextInput
                                 placeholder='Пароль'
@@ -62,13 +69,14 @@ const RegistrationScreen = ({ navigation }) => {
                                 secureTextEntry={true}
                                 onChangeText={(value) => setUser((prevProps) => ({ ...prevProps, password: value }))}
                                 value={user.password}
+                                onFocus={()=>setIsShowKeyboard(true)}
                             />
                             <TouchableOpacity style={styles.btn} onPress={fetchRegistration}>
                                 <Text style={styles.btnText}>Зарегистрироваться</Text>
                             </TouchableOpacity>
 
-                            <View style={styles.regLink}>
-                                <Text style={styles.regLinkText}  onPress={() => navigation.navigate("LoginScreen")}>Уже есть аккаунт? Войти</Text>
+                            <View style={{...styles.regLink, marginBottom: isShowKeyboard? 32: 144 }}>
+                                <Text style={styles.regLinkText}  onPress={() => navigateTo("LoginScreen")}>Уже есть аккаунт? Войти</Text>
 
                             </View>
 
@@ -141,7 +149,6 @@ const styles = StyleSheet.create({
     },
     regLink: {
         alignItems: "center",
-        marginBottom: 144
 
     },
     regLinkText: {

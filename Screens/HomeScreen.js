@@ -1,9 +1,9 @@
 import { StyleSheet} from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { MaterialIcons, FontAwesome5, Fontisto } from '@expo/vector-icons';
-import AlbumsScreen from './AlbumsScreen';
-import CreateAlbumScreen from './CreateAlbumScreen';
-import ProfileScreen from './ProfileScreen';
+import AlbumsScreen from './homeScreens/AlbumsScreen';
+import AddPhotoScreen from './homeScreens/AddPhotoScreen';
+import ProfileScreen from './homeScreens/ProfileScreen';
 
 
 
@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
 
           if (route.name === "Albums") {
             return <Fontisto name="photograph" size={iconSize} color={color} />
-          } else if (route.name === "Create") {
+          } else if (route.name === "Add Photo") {
             return <MaterialIcons name="add-photo-alternate" size={30} color={color} />;
           }
           else if (route.name === "Profile") {
@@ -39,7 +39,7 @@ const HomeScreen = ({ navigation }) => {
 
     >
       <Tabs.Screen name='Albums' component={AlbumsScreen} options={{ headerShown: false  }} />
-      <Tabs.Screen name='Create' component={CreateAlbumScreen} options={{ headerShown: false }} />
+      <Tabs.Screen name='Add Photo' component={AddPhotoScreen} options={{ headerShown: false }} />
       <Tabs.Screen name='Profile' component={ProfileScreen} options={{
         title: null,
         headerRight: () => {

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-const AlbumsScreen = () => {
+const AlbumsScreen = ({ navigation, route }) => {
+    console.log("route.params", route.params);
   return (
     <View style={styles.container}>
       <Text>AlbumsScreen!</Text>

@@ -4,8 +4,8 @@ import React, {useState} from 'react';
 
 const LoginScreen = ({ navigation }) => {
     const userData = {
-        email: null,
-        password: null
+        email: "",
+        password: ""
     }
     
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);

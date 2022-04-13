@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-const AlbumsScreen = () => {
+
+
+const AddFromLibraryScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>AlbumsScreen!</Text>
+      <Text>AddFromLibraryScreen!</Text>
     </View>
   );
 };
@@ -17,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AlbumsScreen;
+export default AddFromLibraryScreen;

@@ -10,8 +10,8 @@ const AddPhotoStack = createStackNavigator();
 const AddPhotoScreen = () => {
   return (
 
-    <AddPhotoStack.Navigator>
-      <AddPhotoStack.Screen name='DefaultAddPhotoScreen' component={DefaultAddPhotoScreen} options={{} }/>
+    <AddPhotoStack.Navigator initialRouteName='DefaultAddPhotoScreen'>
+      <AddPhotoStack.Screen name='DefaultAddPhotoScreen' component={DefaultAddPhotoScreen} options={{ title:" ", headerShown: false} }/>
       <AddPhotoStack.Screen name='AddFromLibrary' component={AddFromLibraryScreen } options={ {}}/>
       <AddPhotoStack.Screen name='TakePhoto' component={TakePhotoScreen } options={{} }/>
 

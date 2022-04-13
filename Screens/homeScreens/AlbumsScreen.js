@@ -1,21 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from "@react-navigation/stack";
+import DefaultAlbumsScreen from './AlbumsScreens/DefaultAlbumsScreen';
+import AlbumsPhotosScreen from './AlbumsScreens/AlbumsPhotosScreen';
 
-const AlbumsScreen = ({ navigation, route }) => {
-    console.log("route.params", route.params);
+
+const AlbumsScreenStack = createStackNavigator();
+
+const AlbumsScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>AlbumsScreen!</Text>
-    </View>
+
+    <AlbumsScreenStack.Navigator initialRouteName='DefaultAlbumsScreen'>
+      <AlbumsScreenStack.Screen name='DefaultAlbumsScreen' component={DefaultAlbumsScreen} options={{ headerShown: false} }/>
+      <AlbumsScreenStack.Screen name='AlbumsPhotosScreen' component={AlbumsPhotosScreen} options={ {}}/>
+
+    </AlbumsScreenStack.Navigator>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default AlbumsScreen;

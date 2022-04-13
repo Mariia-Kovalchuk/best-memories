@@ -21,6 +21,8 @@ const TakePhotoScreen = ({navigation}) => {
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
+  console.log("date",typeof date );
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setShow(false);
@@ -153,7 +155,7 @@ const TakePhotoScreen = ({navigation}) => {
           style={(photo && selectedAlbum) ? styles.sendBtn : { ...styles.sendBtn, ...styles.sendBtnDisabled }}
           disabled={photo && selectedAlbum ? false : true}
           onPress={() => {
-            navigation.navigate("Albums", { photo, selectedAlbum, date })
+            navigation.navigate("Albums", { photo, selectedAlbum, date: JSON.stringify(date)})
           }}>
           <Text style={styles.btnText}>Отправить</Text>
         </TouchableOpacity>

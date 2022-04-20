@@ -15,13 +15,13 @@ const TakePhotoScreen = ({navigation}) => {
   const [photo, setPhoto] = useState(null);
 
   const [selectedAlbum, setSelectedAlbum] = useState();
-  console.log("selectedAlbum 17", selectedAlbum);
+  // console.log("selectedAlbum 17", selectedAlbum);
 
    const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
-  console.log("date",typeof date );
+  // console.log("date",typeof date );
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -42,7 +42,7 @@ const TakePhotoScreen = ({navigation}) => {
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync(false);
-      console.log("status 17", status);
+      // console.log("status 17", status);
 
       // const mediaPermission = await MediaLibrary.requestPermissionsAsync();
       // console.log("mediaPermission", mediaPermission);
@@ -52,7 +52,7 @@ const TakePhotoScreen = ({navigation}) => {
   
   }, []);
 
-  console.log("hasPermission 27", hasPermission, new Date());
+  // console.log("hasPermission 27", hasPermission, new Date());
   
 
   if (hasPermission === null) {
@@ -84,8 +84,8 @@ const TakePhotoScreen = ({navigation}) => {
               if (cameraRef) {
                 const { uri } = await cameraRef.takePictureAsync();
                 setPhoto(uri)
-                console.log("uri 58", uri, new Date())
-                console.log("photo 59", photo, new Date())
+                // console.log("uri 58", uri, new Date())
+                // console.log("photo 59", photo, new Date())
                 // const asset = await MediaLibrary.createAssetAsync(uri);
                 // console.log("asset", asset, Date.now().toString())
               }
@@ -103,7 +103,7 @@ const TakePhotoScreen = ({navigation}) => {
                   ? Camera.Constants.Type.front
                   : Camera.Constants.Type.back
               );
-              console.log("type 77", type)
+              // console.log("type 77", type)
             }}
           >
             <Image style={styles.flipImg} source={require("../../../assets/images/icons8-rotate-camera-48.png")}
@@ -155,7 +155,7 @@ const TakePhotoScreen = ({navigation}) => {
           style={(photo && selectedAlbum) ? styles.sendBtn : { ...styles.sendBtn, ...styles.sendBtnDisabled }}
           disabled={photo && selectedAlbum ? false : true}
           onPress={() => {
-            navigation.navigate("Albums", { photo, selectedAlbum, date: JSON.stringify(date)})
+            navigation.navigate("DefaultAlbumsScreen", { photo, selectedAlbum, date: JSON.stringify(date)})
           }}>
           <Text style={styles.btnText}>Отправить</Text>
         </TouchableOpacity>
